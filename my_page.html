@@ -20,7 +20,10 @@
 
     <label for="mobileInput">Mobile Details:</label>
     <input type="text" id="mobileInput" placeholder="Enter Mobile Details...">
-
+    
+    <label for="additionalInput">Additional_Data:</label>
+    <input type="text" id="additionalInput" placeholder="Enter Additional_Data...">
+    
     <!-- Button to display data -->
     <button class="waves-effect waves-light btn" onclick="displayData()">Show Data</button>
 
@@ -31,6 +34,7 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Mobile</th>
+                <th>Additional_Data</th>
             </tr>
         </thead>
         <tbody id="dataBody">
@@ -43,13 +47,14 @@
             const name = document.getElementById('nameInput').value;
             const email = document.getElementById('emailInput').value;
             const mobile = document.getElementById('mobileInput').value;
-
+            const Additional_Data = document.getElementById('additionalInput').value;
             // Create a new row in the table
             const newRow = document.createElement('tr');
             newRow.innerHTML = `
                 <td>${name}</td>
                 <td>${email}</td>
                 <td>${mobile}</td>
+                <td>${Additional_Data}</td>
             `;
 
             // Append the row to the table body
