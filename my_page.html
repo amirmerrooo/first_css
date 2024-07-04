@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        /* Add your custom styles here */
+    </style>
+</head>
+<body>
+    <h2>Hello World!</h2>
+
+    <!-- Textboxes -->
+    <label for="nameInput">Name:</label>
+    <input type="text" id="nameInput" placeholder="Enter Name...">
+
+    <label for="emailInput">Email ID:</label>
+    <input type="email" id="emailInput" placeholder="Enter Email...">
+
+    <label for="mobileInput">Mobile Details:</label>
+    <input type="text" id="mobileInput" placeholder="Enter Mobile Details...">
+
+    <!-- Button to display data -->
+    <button class="waves-effect waves-light btn" onclick="displayData()">Show Data</button>
+
+    <!-- Table to display entered data -->
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+            </tr>
+        </thead>
+        <tbody id="dataBody">
+            <!-- Data will be added here dynamically -->
+        </tbody>
+    </table>
+
+    <script>
+        function displayData() {
+            const name = document.getElementById('nameInput').value;
+            const email = document.getElementById('emailInput').value;
+            const mobile = document.getElementById('mobileInput').value;
+
+            // Create a new row in the table
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${name}</td>
+                <td>${email}</td>
+                <td>${mobile}</td>
+            `;
+
+            // Append the row to the table body
+            const tableBody = document.getElementById('dataBody');
+            tableBody.appendChild(newRow);
+        }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
