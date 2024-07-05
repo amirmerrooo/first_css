@@ -5,11 +5,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <style>
         .scale-transition {
-        transition: transform 0.2s ease;
+        transition: transform 2s ease;
     }
     /* Optional: Customize the scaling effect */
     .scale-transition:hover {
-        transform: scale(1.05);
+        transform: scale(1.2);
     }
     table {
         border-collapse: collapse;
@@ -46,15 +46,15 @@
     <label for="l4">Amount:</label>
     <input type="text" id="t4" placeholder="Enter_Amount...">
     <!-- Rounded button with the label "Add" -->
-    <button class="waves-effect waves-light btn right scale-transition rounded"
-            style="margin-left: 10px; border: 1px solid #2196F3; background-color: red; font-family: 'Arial', sans-serif;"
+    <button class="waves-effect waves-light btn left scale-transition rounded"
+            style="margin-left; border: 1px solid #2196F3; font-family: 'Arial', sans-serif;"
             onclick="displayData()">Add</button>
     <!-- Button to clear data -->
-    <button class="waves-effect waves-light btn right scale-transition" onclick="clearData()">Clear</button>
+    <button class="waves-effect waves-light btn left scale-transition rounded" style="margin-left: 10px; border: 1px solid #2196F3; font-family: 'Arial', sans-serif;" onclick="clearData()">Clear</button>
     <!-- Rounded button with the label "Modify" -->
-    <button class="waves-effect waves-light btn right scale-transition rounded" style="margin-right: 10px;" onclick="modifyData()">Modify</button>
+    <button class="waves-effect waves-light btn left scale-transition rounded" style="margin-left: 10px; border: 1px solid #2196F3; font-family: 'Arial', sans-serif;" onclick="modifyData()">Modify</button>
      <!-- Rounded button with the label "Delet" -->
-    <button class="waves-effect waves-light btn right scale-transition rounded" style="margin-right: 10px;" onclick="deleteRow()">Delete</button>
+    <button class="waves-effect waves-light btn right scale-transition rounded"style="margin-left: 10px; border: 1px solid #2196F3;background-color: red; font-family: 'Arial', sans-serif;" onclick="deleteRow()">Delete</button>
     <!-- Table to display entered data -->
     <table>
         <thead>
