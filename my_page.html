@@ -3,57 +3,103 @@
 <head>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
     <style>
-        .scale-transition {
-            transition: transform 0.2s ease;
-        }
+       .scale-transition {
+        transition: transform 0.2s ease;
+    }
 
-        /* Optional: Customize the scaling effect */
-        .scale-transition:hover {
-            transform: scale(1.05);
-        }
+    /* Optional: Customize the scaling effect */
+    .scale-transition:hover {
+        transform: scale(1.05);
+    }
+</style>
     </style>
-
 </head>
 <body>
-    <h2>Added Work Order</h2>
+                                        <h2>Added Work Order!</h2>
 
-    <!-- Textboxes  L1 the id of the input field-Amir is the name of the input field-fileNo is the id of the input field-->
-    <label for="L1">Amir:</label>                                               
-    <input type="text" id="fileNo" placeholder="Enter File No...">               
+    <!-- Textboxes -->
+    <label for="l1">File_No:</label>
+    <input type="text" id="t1" placeholder="Enter_File_No...">
 
-    <button class="waves-effect waves-light btn right scale-transition rounded"
-    style="margin-right: 10px; border: 1px solid #2196F3; background-color: red; font-family: 'Arial', sans-serif;
-    " onclick="displayData()">Added</button>
+    <label for="l2">W/O:</label>
+    <input type="text" id="t2" placeholder="Enter_SCECO_No...">
 
-    <!-- Table to display entered data table creat table in html-thead mean table header-tr mean table row-th mean table header name -->
+    <label for="l3">Location:</label>
+    <input type="text" id="t3" placeholder="Enter_Location...">
+
+    <label for="l4">Amount:</label>
+    <input type="text" id="t4" placeholder="Enter_Amount...">
+
+    <!-- Button to display data -->
+    <button class="waves-effect waves-light btn" onclick="displayData()">Show Data</button>
+
+    <!-- Button to clear data (with added class) -->
+    <button class="waves-effect waves-light btn right scale-transition" onclick="clearData()">Clear</button>
+
+    <!-- Rounded button with corrected attributes -->
+    <button class="waves-effect waves-light btn right scale-transition rounded" style="margin-right: 10px;" onclick="modifyData()">Modify</button>
+
+
+    <!-- Table to display entered data -->
     <table>
         <thead>
             <tr>
                 <th>File_No</th>
+                <th>Sceco_No</th>
+                <th>LOCATION</th>
+                <th>AMOUNT</th>
             </tr>
         </thead>
         <tbody id="dataBody">
-
             <!-- Data will be added here dynamically -->
         </tbody>
     </table>
 
     <script>
         function displayData() {
-            const txt1 = document.getElementById('fileNo').value;
+            const txt1 = document.getElementById('t1').value;
+            const txt2 = document.getElementById('t2').value;
+            const txt3 = document.getElementById('t3').value;
+            const txt4 = document.getElementById('t4').value;
 
             // Create a new row in the table
             const newRow = document.createElement('tr');
             newRow.innerHTML = `
                 <td>${txt1}</td>
+                <td>${txt2}</td>
+                <td>${txt3}</td>
+                <td>${txt4}</td>
             `;
 
             // Append the row to the table body
             const tableBody = document.getElementById('dataBody');
             tableBody.appendChild(newRow);
         }
+
+        function clearData() {
+            // Clear the input fields
+            document.getElementById('t1').value = '';
+            document.getElementById('t2').value = '';
+            document.getElementById('t3').value = '';
+            document.getElementById('t4').value = '';
+        }
+       function modifyData() {
+    const tm1 = document.getElementById('t1');
+    const tm2 = document.getElementById('t2');
+    const tm3 = document.getElementById('t3');
+    const tm4 = document.getElementById('t4');
+
+    const r1 = document.querySelector('#dataBody td:nth-child(1)');
+    const r2 = document.querySelector('#dataBody td:nth-child(2)');
+    const r3 = document.querySelector('#dataBody td:nth-child(3)');
+    const r4 = document.querySelector('#dataBody td:nth-child(4)');
+
+    r1.textContent = tm1.value;
+    r2.textContent = tm2.value;
+    r3.textContent = tm3.value;
+    r4.textContent = tm4.value;
+}
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
