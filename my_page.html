@@ -1,3 +1,7 @@
+from IPython.display import HTML
+
+# Your corrected HTML content
+html_content = """
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +15,20 @@
         /* Optional: Customize the scaling effect */
         .scale-transition:hover {
             transform: scale(1.05);
+        }
+
+        /* Create a grid layout */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Adjust the number of columns as needed */
+            gap: 10px; /* Adjust the gap between cells */
+        }
+
+        /* Style each cell */
+        .grid-cell {
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
         }
     </style>
 </head>
@@ -39,20 +57,13 @@
     <!-- Rounded button with corrected attributes -->
     <button class="waves-effect waves-light btn right scale-transition rounded" style="margin-right: 10px;" onclick="modifyData()">Modify</button>
 
-    <!-- Table to display entered data -->
-    <table>
-        <thead>
-            <tr>
-                <th>File_No</th>
-                <th>Sceco_No</th>
-                <th>LOCATION</th>
-                <th>AMOUNT</th>
-            </tr>
-        </thead>
-        <tbody id="dataBody">
-            <!-- Data will be added here dynamically -->
-        </tbody>
-    </table>
+    <!-- Grid view for entered data -->
+    <div class="grid-container">
+        <div class="grid-cell" id="cell1"></div>
+        <div class="grid-cell" id="cell2"></div>
+        <div class="grid-cell" id="cell3"></div>
+        <div class="grid-cell" id="cell4"></div>
+    </div>
 
     <script>
         function displayData() {
@@ -61,18 +72,11 @@
             const txt3 = document.getElementById('t3').value;
             const txt4 = document.getElementById('t4').value;
 
-            // Create a new row in the table
-            const newRow = document.createElement('tr');
-            newRow.innerHTML = `
-                <td>${txt1}</td>
-                <td>${txt2}</td>
-                <td>${txt3}</td>
-                <td>${txt4}</td>
-            `;
-
-            // Append the row to the table body
-            const tableBody = document.getElementById('dataBody');
-            tableBody.appendChild(newRow);
+            // Display data in grid cells
+            document.getElementById('cell1').textContent = txt1;
+            document.getElementById('cell2').textContent = txt2;
+            document.getElementById('cell3').textContent = txt3;
+            document.getElementById('cell4').textContent = txt4;
         }
 
         function clearData() {
@@ -81,26 +85,20 @@
             document.getElementById('t2').value = '';
             document.getElementById('t3').value = '';
             document.getElementById('t4').value = '';
-        }
 
-        // Add an event listener to the table rows
-        const tableRows = document.querySelectorAll('#dataBody tr');
-        tableRows.forEach(row => {
-            row.addEventListener('click', populateTextboxes);
-        });
-
-        function populateTextboxes(event) {
-            const clickedRow = event.currentTarget;
-            const cells = clickedRow.getElementsByTagName('td');
-
-            // Populate textboxes with data from the clicked row
-            document.getElementById('t1').value = cells[0].textContent;
-            document.getElementById('t2').value = cells[1].textContent;
-            document.getElementById('t3').value = cells[2].textContent;
-            document.getElementById('t4').value = cells[3].textContent;
+            // Clear grid cells
+            document.getElementById('cell1').textContent = '';
+            document.getElementById('cell2').textContent = '';
+            document.getElementById('cell3').textContent = '';
+            document.getElementById('cell4').textContent = '';
         }
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>
+
+
+"""
+# Display the corrected HTML content in Colab
+display(HTML(html_content))
