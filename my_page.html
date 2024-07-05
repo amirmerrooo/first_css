@@ -3,52 +3,42 @@
 <head>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <style>
-       .scale-transition {
-        transition: transform 0.2s ease;
-    }
 
-    /* Optional: Customize the scaling effect */
-    .scale-transition:hover {
-        transform: scale(1.05);
-    }
-</style>
+    <style>
+        .scale-transition {
+            transition: transform 0.2s ease;
+        }
+
+        /* Optional: Customize the scaling effect */
+        .scale-transition:hover {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
-                                        <h2>Added Work Order!</h2>
+    <h2>Added Work Order</h2>
 
     <!-- Textboxes -->
-    <label for="l1">File_No:</label>
-    <input type="text" id="t1" placeholder="Enter_File_No...">
+    <label for="t1">File_No:</label>
+    <input type="text" id="t1" placeholder="Enter File No...">
 
-    <label for="l2">W/O:</label>
+    <label for="t2">W/O:</label>
     <input type="text" id="t2" placeholder="Enter_SCECO_No...">
 
-    <label for="l3">Location:</label>
-    <input type="text" id="t3" placeholder="Enter_Location...">
+    <!-- Add and Modify buttons -->
+    <button class="waves-effect waves-light btn right scale-transition rounded"
+            style="margin-right: 10px; border: 1px solid #2196F3; background-color: red; font-family: 'Arial', sans-serif;"
+            onclick="displayData()">Add</button>
 
-    <label for="l4">Amount:</label>
-    <input type="text" id="t4" placeholder="Enter_Amount...">
-
-    <!-- Button to display data -->
-    <button class="waves-effect waves-light btn" onclick="displayData()">Show Data</button>
-
-    <!-- Button to clear data (with added class) -->
-    <button class="waves-effect waves-light btn right scale-transition" onclick="clearData()">Clear</button>
-
-    <!-- Rounded button with corrected attributes -->
-    <button class="waves-effect waves-light btn right scale-transition rounded" style="margin-right: 10px;" onclick="modifyData()">Modify</button>
-
+    <button class="waves-effect waves-light btn right scale-transition rounded" style="margin-right: 10px;"
+            onclick="modifyData()">Modify</button>
 
     <!-- Table to display entered data -->
     <table>
         <thead>
             <tr>
                 <th>File_No</th>
-                <th>Sceco_No</th>
-                <th>LOCATION</th>
-                <th>AMOUNT</th>
+                <th>W/O</th>
             </tr>
         </thead>
         <tbody id="dataBody">
@@ -60,16 +50,12 @@
         function displayData() {
             const txt1 = document.getElementById('t1').value;
             const txt2 = document.getElementById('t2').value;
-            const txt3 = document.getElementById('t3').value;
-            const txt4 = document.getElementById('t4').value;
 
             // Create a new row in the table
             const newRow = document.createElement('tr');
             newRow.innerHTML = `
                 <td>${txt1}</td>
                 <td>${txt2}</td>
-                <td>${txt3}</td>
-                <td>${txt4}</td>
             `;
 
             // Append the row to the table body
@@ -77,29 +63,43 @@
             tableBody.appendChild(newRow);
         }
 
-        function clearData() {
-            // Clear the input fields
-            document.getElementById('t1').value = '';
-            document.getElementById('t2').value = '';
-            document.getElementById('t3').value = '';
-            document.getElementById('t4').value = '';
+        function modifyData() {
+            const tm1 = document.getElementById('t1').value;
+            const tm2 = document.getElementById('t2').value;
+
+            const r1 = document.querySelector('#dataBody tr:first-child');
+            const r2 = document.querySelector('#dataBody tr:nth-child(2)');
+
+            r1.textContent = tm1;
+            r2.textContent = tm2;
         }
-       function modifyData() {
-    const tm1 = document.getElementById('t1');
-    const tm2 = document.getElementById('t2');
-    const tm3 = document.getElementById('t3');
-    const tm4 = document.getElementById('t4');
 
-    const r1 = document.querySelector('#dataBody td:nth-child(1)');
-    const r2 = document.querySelector('#dataBody td:nth-child(2)');
-    const r3 = document.querySelector('#dataBody td:nth-child(3)');
-    const r4 = document.querySelector('#dataBody td:nth-child(4)');
+        // Highlight the selected row
+        function highlightRow(e) {
+            const selectedRow = document.querySelector('.selected');
+            if (selectedRow) {
+                selectedRow.classList.remove('selected');
+            }
+            e.target.parentNode.classList.add('selected');
+        }
 
-    r1.textContent = tm1.value;
-    r2.textContent = tm2.value;
-    r3.textContent = tm3.value;
-    r4.textContent = tm4.value;
-}
+        // Handle OK button click
+        function handleOkClick() {
+            const selectedRow = document.querySelector('.selected');
+            if (selectedRow) {
+                const firstCellValue = selectedRow.querySelector('td:first-child').textContent;
+                document.getElementById('t1').value = firstCellValue; // Set value in textbox 1
+                // You can also set other values in additional textboxes if needed
+            } else {
+                alert('Please select a row first.');
+            }
+        }
+
+        // Attach the click event listener to table rows
+        const tableRows = document.querySelectorAll('#myTable tr');
+        tableRows.forEach((row) => {
+            row.addEventListener('click', highlightRow);
+        });
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
