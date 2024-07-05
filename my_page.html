@@ -5,12 +5,33 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <style>
         .scale-transition {
-            transition: transform 0.2s ease;
-        }
-        /* Optional: Customize the scaling effect */
-        .scale-transition:hover {
-            transform: scale(1.05);
-        }
+        transition: transform 0.2s ease;
+    }
+    /* Optional: Customize the scaling effect */
+    .scale-transition:hover {
+        transform: scale(1.05);
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        border: 1px solid black; /* Change border color to black */
+        padding: 10px;
+        text-align: center;
+    }
+    th {
+        background-color: lightblue; /* Change header background color to black */
+        color: brown; /* Set header text color to white */
+    }
+
+    /* Style for the new row */
+    .new-row {
+        background-color: lightred;
+        color: black;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
     </style>
 </head>
 <body>
@@ -40,8 +61,8 @@
             <tr>
                 <th>File_No</th>
                 <th>Sceco_No</th>
-                <th>LOCATION</th>
-                <th>AMOUNT</th>
+                <th>Location</th>
+                <th>Amount</th>
             </tr>
         </thead>
         <tbody id="dataBody">
