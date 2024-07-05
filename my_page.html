@@ -127,6 +127,28 @@
             }
         });
     }
+     function exportData() {
+    const txt1 = document.getElementById('t1').value;
+    const txt2 = document.getElementById('t2').value;
+    const txt3 = document.getElementById('t3').value;
+    const txt4 = document.getElementById('t4').value;
+    const data = [
+        ['File_No', 'Sceco_No', 'LOCATION', 'AMOUNT'],
+        [txt1, txt2, txt3, txt4]
+    ];
+    const ws = XLSX.utils.aoa_to_sheet(data);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'WorkOrders');
+    const blob = XLSX.write(wb, { bookType: 'xlsx', type: 'blob' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'work_orders.xlsx';
+    a.textContent = 'Save As'; // Display "Save As" text
+    a.style.display = 'none'; // Hide the link
+    document.body.appendChild(a); // Append the link to the document
+    a.click(); // Trigger the download
+    document.body.removeChild(a); // Clean up after download
+}
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
