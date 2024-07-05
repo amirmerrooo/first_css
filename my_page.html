@@ -1,60 +1,56 @@
+from IPython.display import HTML
 
+# Your corrected HTML content
+html_content = """
 <!DOCTYPE html>
 <html>
 <head>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
     <style>
-        /* Add your custom styles here */
+        .scale-transition {
+            transition: transform 0.2s ease;
+        }
+
+        /* Optional: Customize the scaling effect */
+        .scale-transition:hover {
+            transform: scale(1.05);
+        }
     </style>
+
 </head>
 <body>
-    <h2>Hello World!</h2>
+    <h2>Added Work Order</h2>
 
-    <!-- Textboxes -->
-    <label for="nameInput">Name:</label>
-    <input type="text" id="nameInput" placeholder="Enter Name...">
+    <!-- Textboxes  L1 the id of the input field-Amir is the name of the input field-fileNo is the id of the input field-->
+    <label for="L1">Amir:</label>                                               
+    <input type="text" id="fileNo" placeholder="Enter File No...">               
 
-    <label for="emailInput">Email ID:</label>
-    <input type="email" id="emailInput" placeholder="Enter Email...">
+   <button class="waves-effect waves-light btn right scale-transition rounded"
+    style="margin-right: 10px; border: 1px solid #2196F3; background-color: transparent;" onclick="displayData()">Added</button>
 
-    <label for="mobileInput">Mobile Details:</label>
-    <input type="text" id="mobileInput" placeholder="Enter Mobile Details...">
-    
-    <label for="additionalInput">Additional_Data:</label>
-    <input type="text" id="additionalInput" placeholder="Enter Additional_Data...">
-    
-    <!-- Button to display data -->
-    <button class="waves-effect waves-light btn" onclick="displayData()">Show Data</button>
-
-    <!-- Table to display entered data -->
+    <!-- Table to display entered data table creat table in html-thead mean table header-tr mean table row-th mean table header name -->
     <table>
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Mobile</th>
-                <th>Additional_Data</th>
+                <th>File_No</th>
             </tr>
         </thead>
         <tbody id="dataBody">
+
             <!-- Data will be added here dynamically -->
         </tbody>
     </table>
 
     <script>
         function displayData() {
-            const name = document.getElementById('nameInput').value;
-            const email = document.getElementById('emailInput').value;
-            const mobile = document.getElementById('mobileInput').value;
-            const Additional_Data = document.getElementById('additionalInput').value;
+            const txt1 = document.getElementById('fileNo').value;
+
             // Create a new row in the table
             const newRow = document.createElement('tr');
             newRow.innerHTML = `
-                <td>${name}</td>
-                <td>${email}</td>
-                <td>${mobile}</td>
-                <td>${Additional_Data}</td>
+                <td>${txt1}</td>
             `;
 
             // Append the row to the table body
@@ -66,3 +62,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>
+"""
+
+# Display the corrected HTML content in Colab
+display(HTML(html_content))
