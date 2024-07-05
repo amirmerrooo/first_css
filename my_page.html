@@ -55,6 +55,7 @@
     <button class="waves-effect waves-light btn left scale-transition rounded" style="margin-left: 10px; border: 1px solid #2196F3; font-family: 'Arial', sans-serif;" onclick="modifyData()">Modify</button>
      <!-- Rounded button with the label "Delet" -->
     <button class="waves-effect waves-light btn right scale-transition rounded"style="margin-left: 10px; border: 1px solid #2196F3;background-color: red; font-family: 'Arial', sans-serif;" onclick="deleteRow()">Delete</button>
+    <button class="waves-effect waves-light btn right scale-transition rounded"style="margin-left: 10px; border: 1px solid #2196F3;background-color: red; font-family: 'Arial', sans-serif;" onclick="deleteRow()">ExportData</button>
     <!-- Table to display entered data -->
     <table>
         <thead>
@@ -127,7 +128,7 @@
             }
         });
     }
-     function exportData() {
+     function ExportData() {
     const txt1 = document.getElementById('t1').value;
     const txt2 = document.getElementById('t2').value;
     const txt3 = document.getElementById('t3').value;
