@@ -1,5 +1,3 @@
-from IPython.display import HTML
-html_content = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,9 +31,6 @@ html_content = """
     <button class="waves-effect waves-light btn right scale-transition rounded"
             style="margin-left: 10px; border: 1px solid #2196F3; background-color: red; font-family: 'Arial', sans-serif;"
             onclick="displayData()">Add</button>
-   <button class="waves-effect waves-light btn right scale-transition rounded"
-        style="margin-left: 10px; border: 1px solid #2196F3; background-color: red; font-family: 'Arial', sans-serif;"
-        onclick="ExportData()">Excel</button>
     <!-- Table to display entered data -->
     <table>
         <thead>
@@ -52,46 +47,47 @@ html_content = """
     </table>
     <script>
         function displayData() {
-            const txt1 = document.getElementById('t1').value;
-            const txt2 = document.getElementById('t2').value;
-            const txt3 = document.getElementById('t3').value;
-            const txt4 = document.getElementById('t4').value;
-            const newRow = document.createElement('tr');
-            newRow.innerHTML = `
-                <td>${txt1}</td>
-                <td>${txt2}</td>
-                <td>${txt3}</td>
-                <td>${txt4}</td>
-            `;
-            newRow.classList.add('new-row');
-            const tableBody = document.getElementById('dataBody');
-            tableBody.appendChild(newRow);
+            const fileNo = document.getElementById('t1').value;
+            const scecoNo = document.getElementById('t2').value;
+            const location = document.getElementById('t3').value;
+            const amount = document.getElementById('t4').value;
+
+            // Create an object with the collected data
+            const newData = {
+                File_No: fileNo,
+                Sceco_No: scecoNo,
+                LOCATION: location,
+                AMOUNT: amount
+            };
+
+            // Fetch the existing data from data.json (if any)
+            fetch('data.json')
+                .then(response => response.json())
+                .then(existingData => {
+                    // Append the new data to the existing array
+                    const updatedData = [...existingData, newData];
+
+                    // Save the updated data back to data.json
+                    fetch('data.json', {
+                        method: 'PUT',
+                        body: JSON.stringify(updatedData),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(() => {
+                        console.log('Data added successfully!');
+                        // Add the row to the table (if needed)
+                        // ...
+                    })
+                    .catch(error => {
+                        console.error('Error saving data:', error);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching existing data:', error);
+                });
         }
-     function ExportData() {
-    const txt1 = document.getElementById('t1').value;
-    const txt2 = document.getElementById('t2').value;
-    const txt3 = document.getElementById('t3').value;
-    const txt4 = document.getElementById('t4').value;
-    const data = [
-        ['File_No', 'Sceco_No', 'LOCATION', 'AMOUNT'],
-        [txt1, txt2, txt3, txt4]
-    ];
-    const ws = XLSX.utils.aoa_to_sheet(data);
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'WorkOrders');
-    const blob = XLSX.write(wb, { bookType: 'xlsx', type: 'blob' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'work_orders.xlsx';
-    a.textContent = 'Save As'; // Display "Save As" text
-    a.style.display = 'none'; // Hide the link
-    document.body.appendChild(a); // Append the link to the document
-    a.click(); // Trigger the download
-    document.body.removeChild(a); // Clean up after download
-}
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
 </body>
 </html>
-"""
-display(HTML(html_content))
