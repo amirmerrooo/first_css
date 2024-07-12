@@ -1,5 +1,92 @@
-<form action="/register" method="post">
-  <input type="text" id="name" name="name">
-  <input type="email" id="email" name="email">
-  <input type="submit" value="Submit">
-</form>
+from IPython.display import HTML
+html_content = """
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        .scale-transition {
+            transition: transform 2s ease;
+        }
+        /* Optional: Customize the scaling effect */
+        .scale-transition:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <h2>Added Work Order!</h2>
+    <!-- Textboxes -->
+    <label for="l1">File_No:</label>
+    <input type="text" id="t1" placeholder="Enter_File_No...">
+    <label for="l2">W/O:</label>
+    <input type="text" id="t2" placeholder="Enter_SCECO_No...">
+    <button class="waves-effect waves-light btn left scale-transition rounded"
+            style="margin-left: 10px; border: 1px solid #2196F3; font-family: 'Arial', sans-serif;"
+            onclick="displayData()">Add</button>
+    <table>
+        <thead>
+            <tr>
+                <th>File_No</th>
+                <th>Sceco_No</th>
+                <!-- Add more table headers (e.g., Location, Amount) as needed -->
+            </tr>
+        </thead>
+        <tbody id="dataBody">
+            <!-- Rows will be dynamically added here -->
+        </tbody>
+    </table>
+    <script>
+        function displayData() {
+            const txt1 = document.getElementById('t1').value;
+            const txt2 = document.getElementById('t2').value;
+            // Create a new row in the table
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${txt1}</td>
+                <td>${txt2}</td>
+                <!-- Add more cells (e.g., Location, Amount) as needed -->
+            `;
+            const tableBody = document.getElementById('dataBody');
+            tableBody.appendChild(newRow);
+
+            // Save data to GitHub
+            const workOrder = {
+                File_No: txt1,
+                Sceco_No: txt2,
+                // Add other properties as needed
+            };
+            const jsonContent = JSON.stringify(workOrder);
+            const accessToken = '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';
+            const owner = 'amirmerrooo';
+            const repo = 'first_css';
+            const path = 'work_orders.json'; // Adjust the path as needed
+
+            fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
+                method: 'PUT',
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: 'Added new work order data',
+                    content: btoa(jsonContent) // Base64-encoded content
+                })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Data saved successfully!');
+                    } else {
+                        console.error('Error saving data:', response.statusText);
+                    }
+                })
+                .catch(error => {
+                    console.error('An error occurred:', error);
+                });
+        }
+    </script>
+</body>
+</html>
+"""
+display(HTML(html_content))
