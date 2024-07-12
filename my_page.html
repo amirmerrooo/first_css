@@ -1,28 +1,50 @@
-// gfg.php
+from IPython.display import HTML
+html_content = """<!DOCTYPE html>
+<html>
+<head>
+    <!-- Your other head elements here -->
+</head>
+<body>
+    <form id="myForm" action="/register" method="post">
+        <input type="text" id="name" name="name" placeholder="Name">
+        <input type="email" id="email" name="email" placeholder="Email">
+        <input type="submit" value="Submit" onclick="submitForm()">
+    </form>
 
-<?php
-  
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        
-        function get_data() {
-            $datae = array();
-            $datae[] = array(
-                'Name' => $_POST['name'],
-                'Branch' => $_POST['branch'],
-                'College' => $_POST['college'],
-            );
-            return json_encode($datae);
+    <script>
+        function submitForm() {
+            const formData = new FormData(document.getElementById('myForm'));
+            const jsonObject = {};
+            formData.forEach((value, key) => {
+                jsonObject[key] = value;
+            });
+
+            // Send jsonObject to GitHub (you'll need to adjust the URL and authentication)
+            // Example using fetch:
+            fetch('https://github.com/amirmerrooo/first_css/data.json', {
+                method: 'PUT',
+                headers: {
+                    Authorization: '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',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: 'Added new form data',
+                    content: btoa(JSON.stringify(jsonObject)) // Base64-encoded content
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Data saved successfully!');
+                } else {
+                    console.error('Error saving data:', response.statusText);
+                }
+            })
+            .catch(error => {
+                console.error('An error occurred:', error);
+            });
         }
-        
-        $name = "gfg";
-        $file_name = $name . '.json';
-     
-        if(file_put_contents(
-            "$file_name", get_data())) {
-                echo $file_name .' file created';
-            }
-        else {
-            echo 'There is some error';
-        }
-    }
-?>
+    </script>
+</body>
+</html>
+"""
+display(HTML(html_content))
