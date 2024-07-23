@@ -1,82 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        .scale-transition {
-            transition: transform 2s ease;
-        }
-        /* Optional: Customize the scaling effect */
-        .scale-transition:hover {
-            transform: scale(1.2);
-        }
-    </style>
-</head>
-<body>
-    <h2>Page 1</h2>
-    <!-- Textboxes -->
-    <label for="l1">File_No:</label>
-    <input type="text" id="t1" placeholder="Enter File_No...">
-    <label for="l2">Sceco_No:</label>
-    <input type="text" id="t2" placeholder="Enter Sceco_No...">
-    <!-- Rounded button with the label "Add" -->
-    <button class="waves-effect waves-light btn left scale-transition rounded"
-            style="margin-left: 10px; border: 1px solid #2196F3; font-family: 'Arial', sans-serif;"
-            onclick="displayData()">Add</button>
-    <!-- Next Page button -->
-    <a href="new_page.html" class="waves-effect waves-light btn right scale-transition rounded"
-       style="border: 1px solid #2196F3; font-family: 'Arial', sans-serif;">Next Page</a>
-    <!-- Table to display entered data -->
-    <table>
-        <thead>
-            <tr>
-                <th>File_No</th>
-                <th>Sceco_No</th>
-            </tr>
-        </thead>
-        <tbody id="dataBody">
-            <!-- Data will be added here dynamically -->
-        </tbody>
-    </table>
-
-    <!-- Page 2 content -->
-    <h2>Page 2</h2>
-    <label for="l3">Location:</label>
-    <input type="text" id="t3" placeholder="Enter Location...">
-    <label for="l4">Amount:</label>
-    <input type="text" id="t4" placeholder="Enter Amount...">
-    <!-- Rounded button with the label "Add" -->
-    <button class="waves-effect waves-light btn left scale-transition rounded"
-            style="margin-left: 10px; border: 1px solid #2196F3; font-family: 'Arial', sans-serif;"
-            onclick="displayData()">Add</button>
-    <!-- Back button -->
-    <a href="index.html" class="waves-effect waves-light btn right scale-transition rounded"
-       style="border: 1px solid #2196F3; font-family: 'Arial', sans-serif;">Back</a>
-    <!-- Table to display entered data -->
-    <table>
-        <thead>
-            <tr>
-                <th>Location</th>
-                <th>Amount</th>
-            </tr>
-        </thead>
-        <tbody id="dataBody">
-            <!-- Data will be added here dynamically -->
-        </tbody>
-    </table>
-    <script>
-        // Your existing displayData function
-        function displayData() {
-            const txt1 = document.getElementById('t1').value;
-            const txt2 = document.getElementById('t2').value;
-            const newRow = document.createElement('tr');
-            newRow.innerHTML = `
-                <td>${txt1}</td>
-                <td>${txt2}</td>
-            `;
-            const tableBody = document.getElementById('dataBody');
-            tableBody.appendChild(newRow);
-        }
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-</body>
-</html>
+from IPython.display import HTML
+html_content = """
+<form action="/https://rawcdn.githack.com/amirmerrooo/first_css/980edbde29be3e5f3309a42ea9968e34c5e3f417/my_page.html" method="post">
+  <input type="text" id="name" name="name">
+  <input type="email" id="email" name="email">
+  <input type="submit" value="Submit">
+</form>
+"""
+display(HTML(html_content))
