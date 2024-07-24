@@ -1,15 +1,134 @@
 from IPython.display import HTML
 html_content = """
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World</title>
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        .scale-transition {
+        transition: transform 2s ease;
+    }
+    /* Optional: Customize the scaling effect */
+    .scale-transition:hover {
+        transform: scale(1.2);
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        border: 1px solid black; /* Change border color to black */
+        padding: 10px;
+        text-align: center;
+  }
+    </style>
 </head>
 <body>
-    <h1>Hello, World!</h1>
+       <h2>Page_2</h2>
+<label for="t1">File_No:</label>
+<input type="text" id="t1" placeholder="Enter File_No...">
+<label for="t2">Sceco_No:</label>
+<input type="text" id="t2" placeholder="Enter SCECO_No...">
+<label for="t3">Location:</label>
+<input type="text" id="t3" placeholder="Enter Location...">
+<label for="t4">Amount:</label>
+<input type="text" id="t4" placeholder="Enter Amount...">
+<label for="typeSelect">Type:</label>
+<select id="typeSelect">
+        <option value="801">801</option>
+        <option value="802">802</option>
+        <option value="401">401</option>
+</select>
+    <button class="waves-effect waves-light btn left scale-transition rounded"
+            style="margin-left: 10px; border: 1px solid #2196F3; font-family: 'Arial', sans-serif;"
+            onclick="displayData()">Add</button>
+    <button class="waves-effect waves-light btn left scale-transition rounded"
+            style="margin-left: 10px; border: 1px solid #2196F3; font-family: 'Arial', sans-serif;"
+            onclick="clearData()">Clear</button>
+    <button class="waves-effect waves-light btn left scale-transition rounded"
+            style="margin-left: 10px; border: 1px solid #2196F3; font-family: 'Arial', sans-serif;"
+            onclick="modifyData()">Modify</button>
+    <button class="waves-effect waves-light btn right scale-transition rounded"
+            style="margin-left: 10px; border: 1px solid #2196F3; background-color: red; font-family: 'Arial', sans-serif;"
+            onclick="deleteRow()">Delete</button>
+    <button class="waves-effect waves-light btn right scale-transition rounded"
+            style="margin-left: 10px; border: 1px solid #2196F3; background-color: red; font-family: 'Arial', sans-serif;"
+            onclick="exportData()">Excel</button>
+    <table>
+        <thead>
+            <tr>
+                <th>File_No</th>
+                <th>Sceco_No</th>
+                <th>File_Type</th>
+                <th>Location</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody id="dataBody">
+        </tbody>
+    </table>
+    <script>
+        function displayData() {
+            const txt1 = document.getElementById('t1').value;
+            const txt2 = document.getElementById('t2').value;
+            const txt3 = document.getElementById('t3').value;
+            const txt4 = document.getElementById('t4').value;
+            const typeSelect = document.getElementById('typeSelect');
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${txt1}</td>
+                <td>${txt2}</td>
+                <td>${txt3}</td>
+                <td>${txt4}</td>
+                <td>${typeSelect.value}</td>
+            `;
+        }
+      function clearData() {
+    document.getElementById('t1').value = '';
+    document.getElementById('t2').value = '';
+    document.getElementById('t3').value = '';
+    document.getElementById('t4').value = '';
+    document.getElementById('typeSelect').value = 0;
+}
+function modifyData() {
+    const tm1 = document.getElementById('t1').value;
+    const rows = document.querySelectorAll('#dataBody tr');
+    rows.forEach((row) => {
+        const cells = row.querySelectorAll('td');
+        if (cells[0].textContent === tm1) {
+            cells[1].textContent = document.getElementById('t2').value;
+            cells[2].textContent = document.getElementById('t3').value;
+            cells[3].textContent = document.getElementById('t4').value;
+            cells[4].textContent = document.getElementById('typeSelect').value;
+        }
+    });
+}
+function deleteRow() {
+    const tm1 = document.getElementById('t1').value;
+    const rows = document.querySelectorAll('#dataBody tr');
+    rows.forEach((row) => {
+        const cells = row.querySelectorAll('td');
+        if (cells[0].textContent === tm1) {
+            row.remove(); // Remove the entire row
+        }
+    });
+}
+function exportData() {
+    const txt1 = document.getElementById('t1').value;
+    const txt2 = document.getElementById('t2').value;
+    const txt3 = document.getElementById('t3').value;
+    const txt4 = document.getElementById('t4').value;
+    const typeselect = document.getElementById('typeSelect').value;
+    const csvContent = `File_No,Sceco_No,Location,Amount\n${txt1},${txt2},${txt3},${txt4},${typeselect}\n`;
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'work_orders.csv';
+    a.click();
+}
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>
 """
