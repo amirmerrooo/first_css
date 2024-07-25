@@ -35,118 +35,29 @@ html_content = """
     <form>
         <label for="t1">File_No</label>
         <input type="text" id="t1" placeholder="Enter File No..." style="margin-left: 60px;">
-        <br><br>
+        <br><br><br>
         <label for="t2">Sceco_No</label>
         <input type="text" id="t2" placeholder="Enter SCECO No..." style="margin-left: 39px;">
-        <br><br>
+        <br><br><br>
         <label for="t3">Location</label>
         <input type="text" id="t3" placeholder="Enter Location..." style="margin-left: 50px;">
-       <br><br>
+       <br><br><br>
         <label for="t4">Amount</label>
        <input type="text" id="t4" placeholder="Enter Amount..." style="margin-left: 56px;">
-       <br><br>
+       <br><br><br>
         <label for="typeSelect">Type</label>
-        <select id="typeSelect"style="margin-left: 80px;">>
+        <select id="typeSelect"style="margin-left: 10px;width: 265px;">>
             <option value="801">801</option>
             <option value="802">802</option>
             <option value="401">401</option>
         </select>
        <br><br><br>
-        <button class="waves-effect waves-light btn left scale-transition rounded"style="margin-left: 121px;width: 265px;border: 1px solid #2196F3; font-family: 'Arial', sans-serif;"onclick="displayData()">Add</button>
-        <button class="waves-effect waves-light btn left scale-transition rounded" style="margin-left: 10px; border: 1px solid #2196F3; font-family: 'Arial', sans-serif;" onclick="clearData()">Clear</button>
-        <button class="waves-effect waves-light btn left scale-transition rounded" style="margin-left: 10px; border: 1px solid #2196F3; font-family: 'Arial', sans-serif;" onclick="modifyData()">Modify</button>
-        <button class="waves-effect waves-light btn right scale-transition rounded" style="margin-left: 10px; border: 1px solid #2196F3;background-color: red; font-family: 'Arial', sans-serif;" onclick="deleteRow()">Delete</button>
-        <button class="waves-effect waves-light btn right scale-transition rounded" style="margin-left: 10px; border: 1px solid #2196F3;background-color: red; font-family: 'Arial', sans-serif;" onclick="exportData()">Excel</button>
+        <button class="style="margin-left: 121px;width: 265px;border: 1px solid #2196F3; font-family: 'Arial', sans-serif;"onclick="displayData()">Add</button>
+        <button class="style="margin-left: 10px;width: 265px;border: 1px solid #2196F3; font-family: 'Arial', sans-serif;" onclick="clearData()">Clear</button>
+        <button class="style="margin-left: 10px;width: 265px;border: 1px solid #2196F3; font-family: 'Arial', sans-serif;" onclick="modifyData()">Modify</button>
+        <button class="style="margin-left: 10px;width: 265px;border: 1px solid #2196F3;background-color: red; font-family: 'Arial', sans-serif;" onclick="deleteRow()">Delete</button>
+        <button class="style="margin-left: 10px;width: 265px;border: 1px solid #2196F3;background-color: red; font-family: 'Arial', sans-serif;" onclick="exportData()">Excel</button>
     </form>
-</body>
-</html>
-    <!-- Table to display entered data -->
-    <table>
-        <thead>
-            <tr>
-                <th>File_No</th>
-                <th>Sceco_No</th>
-                <th>Location</th>
-                <th>File_Type</th>
-                <th>Amount</th>
-            </tr>
-        </thead>
-        <tbody id="dataBody">
-            <!-- Data will be added here dynamically -->
-        </tbody>
-    </table>
-    <script>
-          function displayData() {
-    const txt1 = document.getElementById('t1').value;
-    const txt2 = document.getElementById('t2').value;
-    const txt3 = document.getElementById('t3').value;
-    const typeSelect = document.getElementById('typeSelect');
-    const txt4 = document.getElementById('t4').value;
-
-    const newRow = document.createElement('tr');
-    newRow.innerHTML = `
-        <td>${txt1}</td>
-        <td>${txt2}</td>
-        <td>${txt3}</td>
-        <td>${typeSelect.value}</td>
-        <td>${txt4}</td>
-    `;
-    newRow.style.backgroundColor = 'lightblue';
-    newRow.style.color = 'black';
-    newRow.style.textAlign = 'center';
-    newRow.style.padding = '10px';
-    newRow.style.border = '1px solid #ccc';
-    newRow.style.borderRadius = '5px';
-    newRow.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
-    const tableBody = document.getElementById('dataBody');
-    tableBody.appendChild(newRow);
-}
-function clearData() {
-    // Clear the input fields
-    document.getElementById('t1').value = '';
-    document.getElementById('t2').value = '';
-    document.getElementById('t3').value = '';
-    document.getElementById('typeSelect').value ===-1;
-    document.getElementById('t4').value = '';
-}
-function modifyData() {
-    const tm1 = document.getElementById('t1').value;
-    const rows = document.querySelectorAll('#dataBody tr');
-    rows.forEach((row) => {
-        const cells = row.querySelectorAll('td');
-        if (cells[0].textContent === tm1) {
-            cells[1].textContent = document.getElementById('t2').value;
-            cells[2].textContent = document.getElementById('t3').value;
-            cells[3].textContent = document.getElementById('typeSelect').value;
-            cells[4].textContent = document.getElementById('t4').value;
-        }
-    });
-}
-function deleteRow() {
-    const tm1 = document.getElementById('t1').value;
-    const rows = document.querySelectorAll('#dataBody tr');
-    rows.forEach((row) => {
-        const cells = row.querySelectorAll('td');
-        if (cells[0].textContent === tm1) {
-            row.remove(); // Remove the entire row
-        }
-    });
-}
- function exportData() {
-            const txt1 = document.getElementById('t1').value;
-            const txt2 = document.getElementById('t2').value;
-            const txt3 = document.getElementById('t3').value;
-            const typeSelect = document.getElementById('typeSelect').value;
-            const txt4 = document.getElementById('t4').value;
-            const csvContent = `File_No,Sceco_No,Location,Amount\n${txt1},${txt2},${txt3},${typeSelect},${txt4}\n`;
-            const blob = new Blob([csvContent], { type: 'text/csv' });
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = 'work_orders.csv';
-            a.click();
-        }
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>
 """
