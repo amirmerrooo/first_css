@@ -5,21 +5,17 @@ table {
   border-radius: 20px;
   width: 400px;
 }
-
 #button
 {
-background-color:Tomato;
+background-color:95b8d1  ;
 color:blue;
 height:35px;
 width:225;
 border-radius:10px;
 }
-
-body
-{
-background-color:blue;
+body {
+    background-image: url("https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.residencestyle.com%2Fwp-content%2Fuploads%2F2023%2F07%2FElectrical-Design-Trends-2-scaled.jpeg&tbnid=4iVHUDiTyLNUVM&vet=1&imgrefurl=https%3A%2F%2Fwww.residencestyle.com%2Felectrical-design-trends-for-your-home-in-2023%2F&docid=k-pcF7DlVdUrzM&w=2560&h=1751&itg=1&source=sh%2Fx%2Fim%2Fm1%2F1&kgs=594cb423dca2f1b5&shem=abc%2Ctric");
 }
-
 select#dayDropdown,#monthDropdown,#yearDropdown
 {
 width: 62px;
@@ -27,7 +23,6 @@ height:30px;
 border-radius:7px;
 text-align:center
 }
-
 input[type="text"]
 {
 border-radius:7px;
@@ -38,8 +33,8 @@ text-align: left;
 label {
     border-radius: 10px;
     font-size: 7px;
-    font-family: Arial, sans-serif;
-    vertical-align: top; /* Align the label content to the top */
+    font-family: 'Aldrich', sans-serif;
+    vertical-align: top;
 }
 </style>
 <script>
@@ -55,79 +50,73 @@ function clearFields(cond_1)
 </script>
 </head>
 <body> 
+<tr>
+<td>Sign Up !</td>
 <br>
-<form method="POST" action="file:///C:/Users/Pc/Downloads/hallo_world.html">
-		
+<form method="POST" action="https://www.google.com">
 <table align="center" border="0" cellspacing="8" width="390px">
-
 <tr>
 <td><label>First Name</label></td>
 <td><input type="text" placeholder="First Name"required></td>
 </tr>
-
 <tr>
 <td><label>Last Name</label></td>
 <td><input type="text" placeholder="Last Name"required></td>
 </tr>
-
 <tr>
 <td><label>Email Adress</label></td>
 <td><input type="text" placeholder="Email" required></td>
 </tr>
-
 <tr>
 <td><label>Password</label></td>
 <td><input type="text" placeholder="Password"required></td>
 </tr>
-
 <tr>
 <td><label>Confirm.Password</label></td>
 <td><input type="text" placeholder="Confirm Password"required></td>
 </tr>
-
 <tr>
 <td><label>Gender</label></td>
 <td>&nbsp<input type="radio" name="r1"required><label>Male</label>
               &nbsp
               <input type="radio" name="r1"required><label>Female</label></td>
 </tr>	
-	
 <tr>
-<td><label>Date Of Birth</label></td>
-
-<td style="text-align: center;">
-    <select id="dayDropdown"style="font-size: 2px;">
-        <option value="">dd</option>
-        <!-- Generate options for days from 1 to 31 -->
-        <script>
-            for (let day = 1; day <= 31; day++) {
-                document.write(`<option value="${day}">${day}</option>`);
-            }
-        </script>
-    </select>
-    <select id="monthDropdown"style="font-size: 2px;">
-        <option value="">mm</option>
-        <!-- Generate options for months from 1 to 12 -->
-        <script>
-            for (let month = 1; month <= 12; month++) {
-                document.write(`<option value="${month}">${month}</option>`);
-            }
-        </script>
-    </select>
-    <select id="yearDropdown"style="font-size: 2px;">
-        <option value="">yyyy</option>
-        <!-- Generate options for years from 1900 to 2100 -->
-        <script>
-            for (let year = 1900; year <= 2100; year++) {
-                document.write(`<option value="${year}">${year}</option>`);
-            }
-        </script>
+    <td><label>Date Of Birth</label></td>
+    <td style="text-align: center;">
+        <select id="dayDropdown" style="font-size: 2px;" required>
+            <option value="">dd</option>
+            <!-- Generate options for days from 1 to 31 -->
+            <script>
+                for (let day = 1; day <= 31; day++) {
+                    document.write(`<option value="${day}">${day}</option>`);
+                }
+            </script>
+        </select>
+        <select id="monthDropdown" style="font-size: 2px;" required>
+            <option value="">mm</option>
+            <!-- Generate options for months from 1 to 12 -->
+            <script>
+                for (let month = 1; month <= 12; month++) {
+                    document.write(`<option value="${month}">${month}</option>`);
+                }
+            </script>
+        </select>
+        <select id="yearDropdown" style="font-size: 2px;" required>
+            <option value="">yyyy</option>
+            <!-- Generate options for years from 1900 to 2100 -->
+            <script>
+                for (let year = 1900; year <= 2100; year++) {
+                    document.write(`<option value="${year}">${year}</option>`);
+                }
+            </script>
+    </td>
+</tr>
     </select>
 </td>
-
 <tr>
 <td><label>Language</label></td>
-<td><input type="checkbox" name="r1"><label>English </label>
+<td><input type="checkbox" name="r1" required><label>English </label>
 <br>
 <tr>
 <td><label></label></td>
@@ -149,17 +138,14 @@ function clearFields(cond_1)
 <td><label></label></td>
 <td><input type="checkbox" name="r3"><label>Italian</label>
 </tr>
-
 <tr>
     <td><label>Address</label></td>
-    <td><textarea rows="5" cols="17.5" ></textarea></td>
+    <td><textarea rows="5" cols="17.5"required ></textarea></td>
 </tr>
-
 <tr>
 <td style="text-align: right;" colspan="2">
-    <input type="submit" id="button" value="Register !" onclick="clearFields(cond_1)" >
+    <input type="submit" id="button" value="Register !" style="font-size: 8px;" onclick="clearFields(cond_1)">
 </td>
-
 </table>
 </form>
 </body>
