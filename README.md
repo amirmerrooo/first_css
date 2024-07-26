@@ -1,4 +1,3 @@
 # first_css
 
-
-![Energy3](https://github.com/user-attachments/assets/c44cf48a-2bc1-4c95-b335-08c7b868131b)
+![Energy4](https://github.com/user-attachments/assets/6f8c5d9c-4046-45f1-bbc2-3126397225d3)
