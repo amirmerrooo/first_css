@@ -101,20 +101,39 @@ function clearFields(cond_1)
 <td><label>Date Of Birth</label></td>
 
 <td style="text-align: center;">
-    <select id="dayDropdown" style="font-size: 2px;">
-        <option>Day</option>
+    <select id="dayDropdown"style="font-size: 2px;">
+        <option value="">dd</option>
+        <!-- Generate options for days from 1 to 31 -->
+        <script>
+            for (let day = 1; day <= 31; day++) {
+                document.write(`<option value="${day}">${day}</option>`);
+            }
+        </script>
     </select>
-    <select id="monthDropdown" style="font-size: 2px;">
-        <option>Month</option>
+    <select id="monthDropdown"style="font-size: 2px;">
+        <option value="">mm</option>
+        <!-- Generate options for months from 1 to 12 -->
+        <script>
+            for (let month = 1; month <= 12; month++) {
+                document.write(`<option value="${month}">${month}</option>`);
+            }
+        </script>
     </select>
-    <select id="yearDropdown" style="font-size: 2px;">
-        <option>Year</option>
+    <select id="yearDropdown"style="font-size: 2px;">
+        <option value="">yyyy</option>
+        <!-- Generate options for years from 1900 to 2100 -->
+        <script>
+            for (let year = 1900; year <= 2100; year++) {
+                document.write(`<option value="${year}">${year}</option>`);
+            }
+        </script>
     </select>
 </td>
 
+
 <tr>
 <td><label>Language</label></td>
-<td><input type="checkbox" name="r1"required><label>English </label>
+<td><input type="checkbox" name="r1"><label>English </label>
 <br>
 <tr>
 <td><label></label></td>
@@ -122,7 +141,7 @@ function clearFields(cond_1)
 <br>
 <tr>
 <td><label></label></td>
-<td><input type="checkbox" name="r1"required><label>Deutch </label>
+<td><input type="checkbox" name="r1"><label>Deutch </label>
 <br>
 <tr>
 <td><label></label></td>
@@ -130,7 +149,7 @@ function clearFields(cond_1)
 <br>
 <tr>
 <td><label></label></td>
-<td><input type="checkbox" name="r1"required><label>Spain </label>
+<td><input type="checkbox" name="r1"><label>Spain </label>
 <br>
 <tr>
 <td><label></label></td>
