@@ -1,36 +1,148 @@
 <html><head><title>Signup Form</title>
 <style>
-<css>
-<this for all fonts in table color black>
-table
-{
-color:black;  
+table {
+  color: black;
+  border-radius: 20px;
+  width: 400px;
 }
-#btn
+
+#button
 {
-background-color:green;
-color:white;
+background-color:Tomato;
+color:blue;
 height:35px;
-width:510px;
+width:225;
+border-radius:10px;
+}
+
+body
+{
+background-color:blue;
+}
+
+select#dayDropdown,#monthDropdown,#yearDropdown
+{
+width: 62px;
+height:30px;
+border-radius:7px;
+text-align:center
+}
+
+input[type="text"]
+{
+border-radius:7px;
+font-size: 9px;
+font-family: Arial, sans-serif;
+text-align: left;
+}
+label {
+    border-radius: 10px;
+    font-size: 7px;
+    font-family: Arial, sans-serif;
+    vertical-align: top; /* Align the label content to the top */
 }
 </style>
+<script>
+function clearFields(cond_1)
+ {
+			cond_1.condition_1(cond_1);
+            document.querySelectorAll('input[type="text"]').forEach(input =>
+			{
+                input.value = ''; // Clear the value of each text input
+            });
+			window.location.href = "file:///C:/Users/Pc/Downloads/hallo_world.html";
+        }
+</script>
 </head>
-<body bgcolor="lime">  <for the color>
+<body> 
+<br>
+<form method="POST" action="file:///C:/Users/Pc/Downloads/hallo_world.html">
+		
+<table align="center" border="0" cellspacing="8" width="390px">
 
-<table align="center" border="0" cellspacing="15">
 <tr>
-<td>First Name<td><input type="text"></td><tr>
-<tr><td>
-Last_Name<td><input type="text"></td><tr>
-<tr><td>
-Email_Adress<td><input type="text"></td><tr>
-<tr><td>
-Password<td><input type="text"></td><tr>
-<tr><td>
-Confirm Password<td><input type="text"></td><tr>
-<tr><td>
-Gender<td><input type="radio" name="r1">Male
-&nbsp&nbsp&nbsp&nbsp&nbsp
-<input type="radio" name="r1">Female
-<tr><td align="center" colspan="2">
-<input type="submit" id="btn"> <regarding to button #btn in css style>
+<td><label>First Name</label></td>
+<td><input type="text" placeholder="First Name"required></td>
+</tr>
+
+<tr>
+<td><label>Last Name</label></td>
+<td><input type="text" placeholder="Last Name"required></td>
+</tr>
+
+<tr>
+<td><label>Email Adress</label></td>
+<td><input type="text" placeholder="Email" required></td>
+</tr>
+
+<tr>
+<td><label>Password</label></td>
+<td><input type="text" placeholder="Password"required></td>
+</tr>
+
+<tr>
+<td><label>Confirm.Password</label></td>
+<td><input type="text" placeholder="Confirm Password"required></td>
+</tr>
+
+<tr>
+<td><label>Gender</label></td>
+<td>&nbsp<input type="radio" name="r1"required><label>Male</label>
+              &nbsp
+              <input type="radio" name="r1"required><label>Female</label></td>
+</tr>	
+		  
+<tr>
+<td style="text-align: right;" colspan="2">
+    <input type="submit" id="button" value="Register !" onclick="clearFields(cond_1)" >
+</td>
+
+<tr>
+<td><label>Date Of Birth</label></td>
+
+<td style="text-align: center;">
+    <select id="dayDropdown" style="font-size: 2px;">
+        <option>Day</option>
+    </select>
+    <select id="monthDropdown" style="font-size: 2px;">
+        <option>Month</option>
+    </select>
+    <select id="yearDropdown" style="font-size: 2px;">
+        <option>Year</option>
+    </select>
+</td>
+
+<tr>
+<td><label>Language</label></td>
+<td><input type="checkbox" name="r1"required><label>English </label>
+<br>
+<tr>
+<td><label></label></td>
+<td><input type="checkbox" name="r3"><label>Arabic</label>
+<br>
+<tr>
+<td><label></label></td>
+<td><input type="checkbox" name="r1"required><label>Deutch </label>
+<br>
+<tr>
+<td><label></label></td>
+<td><input type="checkbox" name="r3"><label>French</label>
+<br>
+<tr>
+<td><label></label></td>
+<td><input type="checkbox" name="r1"required><label>Spain </label>
+<br>
+<tr>
+<td><label></label></td>
+<td><input type="checkbox" name="r3"><label>Italian</label>
+</tr>
+
+<tr>
+    <td><label>Address</label></td>
+    <td><textarea rows="5" cols="17.5" ></textarea></td>
+</tr>
+
+</table>
+</form>
+</body>
+</html>
